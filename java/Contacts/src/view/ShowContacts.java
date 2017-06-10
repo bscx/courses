@@ -40,6 +40,7 @@ public class ShowContacts extends Application {
     public GridPane gridContactDetails;
     Contacts init = new Contacts();
     String emailList = "";
+    String listSelectedItem = "";
 
     @Override
     public void start(Stage primaryStage) {
@@ -195,7 +196,13 @@ public class ShowContacts extends Application {
             public void handle(MouseEvent event) {
                 ArrayList<Contact> contacts = Contacts.getContacts();
                 for (Contact c : contacts) {
-                    if (list.getSelectionModel().getSelectedItem().equals(c.getName())) {
+                    if (list.getSelectionModel().getSelectedItem() == null) {
+                        listSelectedItem = c.getName();
+                    }
+                    else {
+                        listSelectedItem = list.getSelectionModel().getSelectedItem();
+                    }
+                    if (listSelectedItem.equals(c.getName())) {
                         gridContactDetails = new GridPane();
                         gridContactDetails.setHgap(10);
                         gridContactDetails.setVgap(5);
